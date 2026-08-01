@@ -8,7 +8,8 @@ namespace AdvancedWebApiDotnet.Controllers
     {
         private static readonly string[] Summaries =
         [
-            "Freezing5", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+
+            "Freezing5", "Bracing5", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         ];
 
         [HttpGet(Name = "GetWeatherForecast")]
