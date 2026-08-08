@@ -1,3 +1,12 @@
 <Solution>
-  <Project Path="AdvancedWebApiDotnet.csproj" />
+  <Folder Name="/1 - Web Api/">
+    <Project Path="AdvancedWebApiDotnet.csproj" />
+  </Folder>
+  <Folder Name="/2 - Domain/">
+    <Project Path="../AdvancedWebApiDotnet.Domain/AdvancedWebApiDotnet.Domain.csproj" Id="da4cfca0-4de3-4140-974c-18f4948e283b" />
+  </Folder>
+  <Folder Name="/3 - Infra/">
+    <Project Path="../AdvancedWebApiDotnet.Infra/AdvancedWebApiDotnet.Infra.csproj" Id="9670f3ff-c4da-49f4-93c9-0f9661bdfc9e" />
+  </Folder>
+  <Folder Name="/4 - Tests/" />
 </Solution>
