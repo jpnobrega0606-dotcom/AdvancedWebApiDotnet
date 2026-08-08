@@ -1,4 +1,5 @@
 using AdvancedWebApiDotnet.Configuration;
+using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
