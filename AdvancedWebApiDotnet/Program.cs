@@ -1,9 +1,16 @@
 using AdvancedWebApiDotnet.Configuration;
+using AdvancedWebApiDotnet.Domain.Entities.People.Repository;
+using AdvancedWebApiDotnet.Domain.Entities.People.Service;
+using AdvancedWebApiDotnet.Infra.Repositories;
+using AdvancedWebApiDotnet.Infra.Services;
 using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddTransient<IPeopleService, PeopleService>();
+builder.Services.AddTransient<IPeopleRepository, PeopleRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

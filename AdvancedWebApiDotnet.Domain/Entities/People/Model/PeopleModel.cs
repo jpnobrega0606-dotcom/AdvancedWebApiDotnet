@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AdvancedWebApiDotnet.Domain.Entities.People
+namespace AdvancedWebApiDotnet.Domain.Entities.People.Model
 {
     public class PeopleModel
     {

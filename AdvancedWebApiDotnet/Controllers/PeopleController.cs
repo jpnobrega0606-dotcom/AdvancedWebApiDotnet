@@ -1,7 +1,5 @@
-using AdvancedWebApiDotnet.Domain.Entities.People;
-using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
+using AdvancedWebApiDotnet.Domain.Entities.People.Service;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AdvancedWebApiDotnet.Controllers
 {
@@ -9,18 +7,26 @@ namespace AdvancedWebApiDotnet.Controllers
     [Route("[controller]")]
     public class PeopleController : ControllerBase
     {
-        private readonly SqlServerContext _context;
+        private readonly IPeopleService _peopleService;
 
-        public PeopleController(SqlServerContext context)
+        public PeopleController(IPeopleService peopleService)
         {
-            _context = context;
+            _peopleService = peopleService;
         }
 
-
         [HttpGet]
-        public IActionResult Index() {
+        public IActionResult Index()
+        {
+            try
+            {
+                var people = _peopleService.GetAllPeople();
 
-            return Ok(_context.People.Where(p => p.FirstName == "teste"));
+                return StatusCode(200, people);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(501, ex.Message);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using AdvancedWebApiDotnet.Domain.Entities.People;
+﻿using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer.Configuration;
 using Microsoft.EntityFrameworkCore;
 
