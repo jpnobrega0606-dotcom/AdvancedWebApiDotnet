@@ -11,7 +11,7 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
     {
         private SqlServerContext _sqlServerContext;
 
-        public PeopleRepository(SqlServerContext context) 
+        public PeopleRepository(SqlServerContext context)
         {
             _sqlServerContext = context;
         }
@@ -20,5 +20,14 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
         {
             return _sqlServerContext.People.ToList();
         }
+
+        public PeopleModel Create(PeopleModel people)
+        {
+            _sqlServerContext.People.Add(people);
+            _sqlServerContext.SaveChanges();
+
+            return people;
+        } 
+
     }
 }

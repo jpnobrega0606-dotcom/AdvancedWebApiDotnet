@@ -27,6 +27,15 @@ namespace AdvancedWebApiDotnet.Controllers
             {
                 return StatusCode(501, ex.Message);
             }
+
+
+
+            [HttpPost]
+            public IActionResult Create([FromBody] PeopleModel people)
+            {
+                return StatusCode(_peopleService.Create(people));
+            }
+
         }
     }
 }
