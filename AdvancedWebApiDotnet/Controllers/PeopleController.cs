@@ -31,7 +31,7 @@ namespace AdvancedWebApiDotnet.Controllers
 
 
             [HttpPost]
-            public IActionResult Create([FromBody] PeopleModel people)
+            public IActionResult Create()
             {
                 return StatusCode(_peopleService.Create(people));
             }
