@@ -6,7 +6,7 @@ namespace AdvancedWebApiDotnet.Domain.Entities.People.Service
     {
         IList<PeopleModel> GetAllPeople();
 
-        void Create(PeopleModel) ;
+        void Create(PeopleModel model);
     }
 
 }

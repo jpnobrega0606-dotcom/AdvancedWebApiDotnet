@@ -1,4 +1,6 @@
+using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using AdvancedWebApiDotnet.Domain.Entities.People.Service;
+using AdvancedWebApiDotnet.Infra.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdvancedWebApiDotnet.Controllers
@@ -28,14 +30,21 @@ namespace AdvancedWebApiDotnet.Controllers
                 return StatusCode(501, ex.Message);
             }
 
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] PeopleModel people)
 
-
-            [HttpPost]
-            public IActionResult Create()
+        {
+            try
             {
-                return StatusCode(_peopleService.Create(people));
-            }
+                _peopleService.Create(people);
 
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(501, ex.Message);
+            }
         }
     }
 }
