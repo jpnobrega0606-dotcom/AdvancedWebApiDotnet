@@ -18,9 +18,9 @@ namespace AdvancedWebApiDotnet.Infra.Services
             return _peopleRepository.GetAll();
         }
 
-        public PeopleModel CreatePeople(PeopleModel people)
+        public void  Create(IPeopleRepository peopleRepository)
         {
-            return _peopleRepository.Create(people);
+            return _peopleRepository.Create(PeopleModel);
         }
     }
 }

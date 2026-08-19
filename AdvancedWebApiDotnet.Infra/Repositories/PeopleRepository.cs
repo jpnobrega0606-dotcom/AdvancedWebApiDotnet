@@ -21,12 +21,12 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
             return _sqlServerContext.People.ToList();
         }
 
-        public PeopleModel Create(PeopleModel people)
+        public void Create(PeopleModel people)
         {
             _sqlServerContext.People.Add(people);
             _sqlServerContext.SaveChanges();
 
-            return people;
+         
         } 
 
     }

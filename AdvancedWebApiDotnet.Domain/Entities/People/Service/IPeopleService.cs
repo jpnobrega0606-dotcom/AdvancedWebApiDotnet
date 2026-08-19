@@ -5,5 +5,8 @@ namespace AdvancedWebApiDotnet.Domain.Entities.People.Service
     public interface IPeopleService
     {
         IList<PeopleModel> GetAllPeople();
+
+        void Create(PeopleModel) ;
     }
+
 }
