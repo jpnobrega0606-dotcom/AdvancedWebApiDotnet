@@ -7,6 +7,10 @@ namespace AdvancedWebApiDotnet.Domain.Entities.People.Service
         IList<PeopleModel> GetAllPeople();
 
         void Create(PeopleModel model);
+
+        void Update(PeopleModel model);
+
+        void Delete(Guid Id);
     }
 
 }

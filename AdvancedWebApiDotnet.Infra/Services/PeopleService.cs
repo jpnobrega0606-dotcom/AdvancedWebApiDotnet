@@ -20,7 +20,16 @@ namespace AdvancedWebApiDotnet.Infra.Services
 
         public void  Create(PeopleModel model)
         {
-      
+         _peopleRepository.Create(model);
+        }
+        public void Update(PeopleModel model)
+        {
+            _peopleRepository.Update(model);
+        }
+
+        public void Delete(Guid Id)
+        {
+            _peopleRepository.Delete(Id);
         }
     }
 }

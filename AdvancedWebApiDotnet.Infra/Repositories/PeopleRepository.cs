@@ -28,6 +28,22 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
 
          
         } 
+        public void Update(PeopleModel people)
+        {
 
+           _sqlServerContext.People.Update(people);
+            _sqlServerContext.SaveChanges();
+        }
+         
+        public void Delete(Guid Id)
+        {
+            var people = _sqlServerContext.People.Find(Id);
+            
+            if (people != null)
+            {
+                _sqlServerContext.People.Remove(people);
+                _sqlServerContext.SaveChanges();
+            }
+        }
     }
 }
