@@ -1,4 +1,5 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.People.Model;
+using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
 using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer.Configuration;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,8 @@ namespace AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer
     public class SqlServerContext : DbContext
     {
         public DbSet<PeopleModel> People { get; set; }
+
+        public DbSet<PostModel> Posts { get; set; }
 
         public SqlServerContext()
         {

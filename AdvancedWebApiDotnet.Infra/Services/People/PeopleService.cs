@@ -2,7 +2,7 @@
 using AdvancedWebApiDotnet.Domain.Entities.People.Repository;
 using AdvancedWebApiDotnet.Domain.Entities.People.Service;
 
-namespace AdvancedWebApiDotnet.Infra.Services
+namespace AdvancedWebApiDotnet.Infra.Services.People
 {
     public class PeopleService : IPeopleService
     {
@@ -20,8 +20,9 @@ namespace AdvancedWebApiDotnet.Infra.Services
 
         public void  Create(PeopleModel model)
         {
-         _peopleRepository.Create(model);
+            _peopleRepository.Create(model);
         }
+
         public void Update(PeopleModel model)
         {
             _peopleRepository.Update(model);
@@ -30,6 +31,11 @@ namespace AdvancedWebApiDotnet.Infra.Services
         public void Delete(Guid Id)
         {
             _peopleRepository.Delete(Id);
+        }
+
+        public PeopleModel GetById(Guid id)
+        {
+            return _peopleRepository.GetById(id);
         }
     }
 }

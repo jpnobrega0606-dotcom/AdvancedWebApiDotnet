@@ -1,4 +1,5 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.People.Model;
+using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,10 +8,11 @@ using System.Text;
 
 namespace AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer.Configuration
 {
-    public class PeopleConfiguration : IEntityTypeConfiguration<PeopleModel>
+    public class PostConfiguration : IEntityTypeConfiguration<PostModel>
     {
-        public void Configure(EntityTypeBuilder<PeopleModel> builder)
+        public void Configure(EntityTypeBuilder<PostModel> builder)
         {
+
             builder
                 .HasKey(x => x.Id);
 
@@ -19,26 +21,26 @@ namespace AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer.Configuration
                 .ValueGeneratedOnAdd();
 
             builder
-                .Property(x => x.Document)
+                .Property(x => x.Title)
                     .HasMaxLength(200)
                     .IsRequired();
 
             builder
-                .Property(x => x.FirstName)
-                    .HasMaxLength(200)
+                .Property(x => x.Description)
+                    .HasMaxLength(1000)
                     .IsRequired();
 
             builder
-                .Property(x => x.LastName)
-                    .HasMaxLength(200)
-                    .IsRequired();
+                .Property(x => x.Datetime)
+                .IsRequired();
 
             builder
-                .HasMany(x => x.Posts)
-                .WithOne(x => x.Persona);
+                .HasOne(x => x.Persona)
+                .WithMany(x => x.Posts)
+                .HasForeignKey(x => x.PeopleId);
 
             builder
-                .ToTable("People");
+                .ToTable("Posts");
         }
     }
 }

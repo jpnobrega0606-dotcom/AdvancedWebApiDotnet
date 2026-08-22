@@ -1,8 +1,6 @@
 using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using AdvancedWebApiDotnet.Domain.Entities.People.Service;
-using AdvancedWebApiDotnet.Infra.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 
 namespace AdvancedWebApiDotnet.Controllers
 {
@@ -17,24 +15,31 @@ namespace AdvancedWebApiDotnet.Controllers
             _peopleService = peopleService;
         }
 
-        [HttpGet]
-        public IActionResult Index()
+        [HttpGet("getAll")]
+        public IActionResult GetAll()
         {
             try
             {
                 var people = _peopleService.GetAllPeople();
 
-                return StatusCode(200, people);
+                return Ok(people);
             }
             catch (Exception ex)
             {
                 return StatusCode(501, ex.Message);
             }
-
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var personal = _peopleService.GetById(id);
+
+            return Ok();
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] PeopleModel people)
-
         {
             try
             {
@@ -51,7 +56,6 @@ namespace AdvancedWebApiDotnet.Controllers
         [HttpPut]
         public IActionResult Update([FromBody] PeopleModel people)
         {
-
             try
             {
                 _peopleService.Update(people);
@@ -64,23 +68,18 @@ namespace AdvancedWebApiDotnet.Controllers
             }
         }
 
-
         [HttpDelete("{Id}")]
         public IActionResult Delete(Guid Id)
         {
             try
             {
-
                 _peopleService.Delete(Id);
                 return StatusCode(200);
             }
-
             catch (Exception ex)
             {
                 return StatusCode(501, ex.Message);
             }
-
         }
-        
     }
 }

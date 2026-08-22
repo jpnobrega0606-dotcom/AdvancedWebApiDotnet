@@ -1,11 +1,12 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using AdvancedWebApiDotnet.Domain.Entities.People.Repository;
 using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AdvancedWebApiDotnet.Infra.Repositories
+namespace AdvancedWebApiDotnet.Infra.Repositories.People
 {
     public class PeopleRepository : IPeopleRepository
     {
@@ -18,7 +19,7 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
 
         public IList<PeopleModel> GetAll()
         {
-            return _sqlServerContext.People.ToList();
+            return _sqlServerContext.People.Include(x => x.Posts).ToList();
         }
 
         public void Create(PeopleModel people)
@@ -30,8 +31,13 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
         } 
         public void Update(PeopleModel people)
         {
+            var peoplePersisted = _sqlServerContext.People.Find(people.Id);
 
-           _sqlServerContext.People.Update(people);
+            peoplePersisted.Document = people.Document;
+            peoplePersisted.FirstName = people.FirstName;
+            peoplePersisted.LastName = people.LastName;
+            
+            _sqlServerContext.People.Update(peoplePersisted);
             _sqlServerContext.SaveChanges();
         }
          
@@ -44,6 +50,11 @@ namespace AdvancedWebApiDotnet.Infra.Repositories
                 _sqlServerContext.People.Remove(people);
                 _sqlServerContext.SaveChanges();
             }
+        }
+
+        public PeopleModel GetById(Guid id)
+        {
+           return _sqlServerContext.People.Find(id);
         }
     }
 }
