@@ -22,7 +22,7 @@ namespace AdvancedWebApiDotnet.Infra.Repositories.Posts
 
         public IList<PostModel> GetAll()
         {
-            return _sqlServerContext.Posts.Include(x => x.Persona).ToList();
+            return _sqlServerContext.Posts.Include(x => x.Persona).Include(x => x.Comments).ThenInclude(x=>x.People).ToList();
         }
     }
 }

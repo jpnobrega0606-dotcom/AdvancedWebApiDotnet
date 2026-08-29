@@ -31,8 +31,12 @@ namespace AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer.Configuration
                     .IsRequired();
 
             builder
-                .Property(x => x.Datetime)
+                .Property(x => x.CreatedDate)
                 .IsRequired();
+
+            builder
+                .Property(x => x.LastUpdatedDate)
+                .IsRequired(false);
 
             builder
                 .HasOne(x => x.Persona)

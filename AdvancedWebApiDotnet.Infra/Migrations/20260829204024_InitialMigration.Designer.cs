@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdvancedWebApiDotnet.Infra.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20260822203836_AddPosts")]
-    partial class AddPosts
+    [Migration("20260829204024_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,33 @@ namespace AdvancedWebApiDotnet.Infra.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AdvancedWebApiDotnet.Domain.Entities.Comments.Model.CommentsModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("PeopleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeopleId")
+                        .IsUnique();
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Comments", (string)null);
+                });
 
             modelBuilder.Entity("AdvancedWebApiDotnet.Domain.Entities.People.Model.PeopleModel", b =>
                 {
@@ -80,6 +107,25 @@ namespace AdvancedWebApiDotnet.Infra.Migrations
                     b.ToTable("Posts", (string)null);
                 });
 
+            modelBuilder.Entity("AdvancedWebApiDotnet.Domain.Entities.Comments.Model.CommentsModel", b =>
+                {
+                    b.HasOne("AdvancedWebApiDotnet.Domain.Entities.People.Model.PeopleModel", "People")
+                        .WithOne()
+                        .HasForeignKey("AdvancedWebApiDotnet.Domain.Entities.Comments.Model.CommentsModel", "PeopleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AdvancedWebApiDotnet.Domain.Entities.Posts.Model.PostModel", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("People");
+
+                    b.Navigation("Post");
+                });
+
             modelBuilder.Entity("AdvancedWebApiDotnet.Domain.Entities.Posts.Model.PostModel", b =>
                 {
                     b.HasOne("AdvancedWebApiDotnet.Domain.Entities.People.Model.PeopleModel", "Persona")
@@ -94,6 +140,11 @@ namespace AdvancedWebApiDotnet.Infra.Migrations
             modelBuilder.Entity("AdvancedWebApiDotnet.Domain.Entities.People.Model.PeopleModel", b =>
                 {
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("AdvancedWebApiDotnet.Domain.Entities.Posts.Model.PostModel", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

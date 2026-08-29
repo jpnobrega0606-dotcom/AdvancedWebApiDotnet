@@ -1,9 +1,6 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer.Configuration
 {

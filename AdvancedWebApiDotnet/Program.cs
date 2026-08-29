@@ -1,10 +1,14 @@
 using AdvancedWebApiDotnet.Configuration;
+using AdvancedWebApiDotnet.Domain.Entities.Coment.Repository;
+using AdvancedWebApiDotnet.Domain.Entities.Comments.Service;
 using AdvancedWebApiDotnet.Domain.Entities.People.Repository;
 using AdvancedWebApiDotnet.Domain.Entities.People.Service;
 using AdvancedWebApiDotnet.Domain.Entities.Posts.Repository;
 using AdvancedWebApiDotnet.Domain.Entities.Posts.Service;
+using AdvancedWebApiDotnet.Infra.Repositories.Coments;
 using AdvancedWebApiDotnet.Infra.Repositories.People;
 using AdvancedWebApiDotnet.Infra.Repositories.Posts;
+using AdvancedWebApiDotnet.Infra.Services.Coment;
 using AdvancedWebApiDotnet.Infra.Services.People;
 using AdvancedWebApiDotnet.Infra.Services.Posts;
 using System.Text.Json.Serialization;
@@ -33,6 +37,9 @@ builder.Services.AddTransient<IPeopleRepository, PeopleRepository>();
 
 builder.Services.AddTransient<IPostService, PostService>();
 builder.Services.AddTransient<IPostRepository, PostRepository>();
+
+builder.Services.AddTransient<ICommentsService, CommentsService>();
+builder.Services.AddTransient<IComnentsRepository, CommentsRepository>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

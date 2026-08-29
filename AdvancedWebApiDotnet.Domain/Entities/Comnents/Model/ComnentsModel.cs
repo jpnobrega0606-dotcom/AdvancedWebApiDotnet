@@ -1,22 +1,19 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AdvancedWebApiDotnet.Domain.Entities.Coment.Model
+namespace AdvancedWebApiDotnet.Domain.Entities.Comments.Model
 {
-    public class ComentModel
+    public class CommentsModel
     {
         public Guid Id { get; set; } 
-
         public string Description { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? LastUpdatedDate { get; set; }
 
         public Guid PostId { get; set; }  
-        public PostModel Post { get; set; }
+        public PostModel? Post { get; set; }
 
         public Guid PeopleId { get; set; }
-        public PeopleModel People{ get; set; }
-
+        public PeopleModel? People { get; set; }
     }
 }

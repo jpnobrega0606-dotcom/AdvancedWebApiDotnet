@@ -1,5 +1,4 @@
-﻿using AdvancedWebApiDotnet.Domain.Entities.People.Service;
-using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
+﻿using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
 using AdvancedWebApiDotnet.Domain.Entities.Posts.Service;
 using Microsoft.AspNetCore.Mvc;
 

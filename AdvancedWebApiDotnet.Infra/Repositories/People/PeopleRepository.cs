@@ -2,9 +2,6 @@
 using AdvancedWebApiDotnet.Domain.Entities.People.Repository;
 using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AdvancedWebApiDotnet.Infra.Repositories.People
 {

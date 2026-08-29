@@ -1,5 +1,6 @@
 using AdvancedWebApiDotnet.Domain.Entities.People.Model;
 using AdvancedWebApiDotnet.Domain.Entities.People.Service;
+using AdvancedWebApiDotnet.Infra.Crypt;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdvancedWebApiDotnet.Controllers
@@ -21,6 +22,8 @@ namespace AdvancedWebApiDotnet.Controllers
             try
             {
                 var people = _peopleService.GetAllPeople();
+
+                var cripto = new CriptService();
 
                 return Ok(people);
             }
