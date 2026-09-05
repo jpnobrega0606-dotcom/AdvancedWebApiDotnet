@@ -1,13 +1,9 @@
-﻿using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AdvancedWebApiDotnet.Domain.Entities.Common.Repository;
+using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
 
 namespace AdvancedWebApiDotnet.Domain.Entities.Posts.Repository
 {
-    public interface IPostRepository
+    public interface IPostRepository: IBaseRepository<PostModel>
     {
-        IList<PostModel> GetAll();
-        void Create(PostModel model);
     }
 }

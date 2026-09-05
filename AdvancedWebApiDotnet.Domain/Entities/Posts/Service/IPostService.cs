@@ -1,4 +1,5 @@
-﻿using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
+﻿using AdvancedWebApiDotnet.Domain.Entities.Comments.Model;
+using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
 
 namespace AdvancedWebApiDotnet.Domain.Entities.Posts.Service
 {
@@ -6,5 +7,6 @@ namespace AdvancedWebApiDotnet.Domain.Entities.Posts.Service
     {
         IList<PostModel> GetAll();
         void Create(PostModel model);
+        IList<CommentsModel> GetCommentsByPostId(Guid id);
     }
 }

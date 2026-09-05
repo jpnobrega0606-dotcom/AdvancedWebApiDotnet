@@ -1,28 +1,15 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
 using AdvancedWebApiDotnet.Domain.Entities.Posts.Repository;
+using AdvancedWebApiDotnet.Infra.Repositories.Common;
 using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
-using Microsoft.EntityFrameworkCore;
 
 namespace AdvancedWebApiDotnet.Infra.Repositories.Posts
 {
-    public class PostRepository : IPostRepository
+    public class PostRepository : BaseRepository<PostModel>, IPostRepository
     {
-        private SqlServerContext _sqlServerContext;
-
-        public PostRepository(SqlServerContext sqlServerContext)
+        public PostRepository(SqlServerContext sqlServerContext) : base(sqlServerContext)
         {
             _sqlServerContext = sqlServerContext;
-        }
-
-        public void Create(PostModel model)
-        {
-            _sqlServerContext.Posts.Add(model);
-            _sqlServerContext.SaveChanges();
-        }
-
-        public IList<PostModel> GetAll()
-        {
-            return _sqlServerContext.Posts.Include(x => x.Persona).Include(x => x.Comments).ThenInclude(x=>x.People).ToList();
         }
     }
 }

@@ -37,5 +37,13 @@ namespace AdvancedWebApiDotnet.Controllers
 
             return Ok();
         }
+
+        [HttpGet("{postId}/comments")]
+        public IActionResult Create(Guid postId)
+        {
+            var comments = _postService.GetCommentsByPostId(postId);
+
+            return Ok(comments);
+        }
     }
 }

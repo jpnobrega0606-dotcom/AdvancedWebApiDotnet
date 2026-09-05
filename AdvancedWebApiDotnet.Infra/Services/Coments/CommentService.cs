@@ -1,6 +1,9 @@
 ﻿using AdvancedWebApiDotnet.Domain.Entities.Coment.Repository;
 using AdvancedWebApiDotnet.Domain.Entities.Comments.Model;
 using AdvancedWebApiDotnet.Domain.Entities.Comments.Service;
+using AdvancedWebApiDotnet.Domain.Entities.People.Model;
+using AdvancedWebApiDotnet.Domain.Entities.Posts.Model;
+using AdvancedWebApiDotnet.Infra.Storage.Database.SqlServer;
 
 namespace AdvancedWebApiDotnet.Infra.Services.Coment
 {
@@ -15,12 +18,18 @@ namespace AdvancedWebApiDotnet.Infra.Services.Coment
 
         public void Create(CommentsModel model)
         {
-            _commentRepository.Create(model);
+            _commentRepository.Add(model);
         }
 
-        public List<CommentsModel> GetAll()
+        public IList<CommentsModel> GetAll()
         {
-            return _commentRepository.GetAll();
+            var include = new List<string>()
+            {
+                typeof(PostModel).FullName,
+                typeof(PeopleModel).FullName,
+            };
+
+            return _commentRepository.GetAll(include);
         }
     }
 }

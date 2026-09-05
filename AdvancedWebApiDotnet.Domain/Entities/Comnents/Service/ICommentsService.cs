@@ -4,7 +4,7 @@ namespace AdvancedWebApiDotnet.Domain.Entities.Comments.Service
 {
     public interface ICommentsService
     {
-        List<CommentsModel> GetAll();
+        IList<CommentsModel> GetAll();
 
         void Create(CommentsModel model);
     }

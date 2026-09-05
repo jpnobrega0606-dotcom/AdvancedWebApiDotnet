@@ -20,7 +20,7 @@ namespace AdvancedWebApiDotnet.Infra.Services.People
 
         public void  Create(PeopleModel model)
         {
-            _peopleRepository.Create(model);
+            _peopleRepository.Add(model);
         }
 
         public void Update(PeopleModel model)
